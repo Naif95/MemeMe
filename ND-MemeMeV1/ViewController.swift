@@ -21,13 +21,6 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     
     var meme:  Meme!
     
-    struct Meme {
-        let topText: String
-        let bottmText: String
-        let originalImage: UIImage
-        let memedImage: UIImage
-    }
-    
     
     let memeTextAttributes: [NSAttributedString.Key: Any] = [
         .strokeColor: UIColor.black,
@@ -168,6 +161,10 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     func save(memedImage: UIImage) {
         let meme = Meme(topText: topText.text!, bottmText: bottomText.text!, originalImage: imagePickerView.image!, memedImage: memedImage)
         self.meme = meme
+        
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        appDelegate.memes.append(meme)
+        
     }
     
     @IBAction func shareButton(_ sender: Any) {
